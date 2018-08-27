@@ -16,9 +16,8 @@ class WeatherLocation extends Component {
          city:  city,
          data: null
     };
-    console.log("constructor");
+    
   }
- 
 
 
     handleUpdateClick =() =>{
@@ -50,14 +49,13 @@ class WeatherLocation extends Component {
 
      }
      
-  render() {
+  render = () => {
 
+      const onWeatherClick = this.props; 
       const { city , data } = this.state;
-
-       const cityShort = city.split(",", 2);
-
+      const cityShort = city.split(",", 2);     
     return (
-    <div className="weatherLocstion">
+    <div className="weatherLocstion" onClick={ onWeatherClick }>
          <Location city={cityShort[0]}/>
          {data ? <WeatherData data={data} /> :
                  <Preloader size='big'/>  }
@@ -66,6 +64,8 @@ class WeatherLocation extends Component {
   }
 }
 WeatherLocation.PropTypes={
-   city:  PropTypes.string
+   city:  PropTypes.string,
+   onWeatherClick: PropTypes.func,
+
 }
 export default WeatherLocation;
